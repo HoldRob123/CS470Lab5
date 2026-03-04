@@ -1,13 +1,16 @@
 CC = gcc
-CFLAGS = -Wall
+CFLAGS = -Wall -g
 
-all: SJF RR
+all: Holden_testFS
 
-SJF: SJF.c
-	$(CC) $(CFLAGS) SJF.c -o SJF
+Holden_testFS: Holden_testFS.o Holden_libFS.o
+	$(CC) $(CFLAGS) -o Holden_testFS Holden_testFS.o Holden_libFS.o
 
-RR: RR.c
-	$(CC) $(CFLAGS) RR.c -o RR
+Holden_testFS.o: Holden_testFS.c Holden_libFS.h
+	$(CC) $(CFLAGS) -c Holden_testFS.c
+
+Holden_libFS.o: Holden_libFS.c Holden_libFS.h
+	$(CC) $(CFLAGS) -c Holden_libFS.c
 
 clean:
-	rm -f SJF RR
+	rm -f *.o Holden_testFS
